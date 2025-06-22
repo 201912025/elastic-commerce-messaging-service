@@ -20,10 +20,6 @@ public class SlackService {
     @Value("${slack.webhook.url}")
     private String webhookUrl;
 
-
-    /**
-     * Slack Incoming Webhook에 메시지를 논블로킹으로 전송
-     */
     public Mono<Void> sendMessage(String text) {
         return webClient.post()
                         .uri(webhookUrl)

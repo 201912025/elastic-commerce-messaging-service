@@ -19,7 +19,6 @@ public class EmailService {
     @Value("${email.mock.url}")
     private String emailMockUrl;
 
-
     public Mono<Void> sendSimpleEmail(String to, String subject, String text) {
         Map<String, String> payload = Map.of(
                 "to",      to,

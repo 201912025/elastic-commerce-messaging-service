@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
 public class NotificationService {
 
     private final EmailService emailService;
-    private final SlackService slackService;         // WebFlux 비동기 알림
-    private final SlackSyncService slackSyncService;  // 동기 Slack 클라이언트
+    private final SlackService slackService;
+    private final SlackSyncService slackSyncService;
 
 
     @Value("${shop.frontend.url}")
@@ -72,39 +72,14 @@ public class NotificationService {
             emailService.sendSimpleEmail(req.userEmail(), subject, body)
                         .doOnSuccess(u -> log.info("Email 전송 성공: {}", req.userEmail()))
                         .doOnError(e -> log.error("Email 전송 실패: {}", req.userEmail(), e))
-                        .subscribe();    // ← 반드시 구독해야 내부 로직이 실행됩니다.
+                        .subscribe();
         }
 
-        // Slack 전송 (이메일 제목+본문 합친 텍스트)
         String slackMessage = subject + "\n\n" + body;
         slackService.sendMessage(slackMessage)
                     .doOnSuccess(unused -> log.info("Slack 알림 전송 성공"))
                     .doOnError(error -> log.error("Slack 알림 전송 실패", error))
-                    .subscribe();  // 구독해야 실제 호출이 발생합니다.
+                    .subscribe();
 
     }
 }
-
-
-/*
-slackService.sendMessage(slackMessage)
-                    .doOnSuccess(unused -> log.info("Slack 알림 전송 성공"))
-                    .doOnError(error -> log.error("Slack 알림 전송 실패", error))
-                    .subscribe();  // 구독해야 실제 호출이 발생합니다.
- */
-
-
-/*
-            emailService.sendSimpleEmail(req.userEmail(), subject, body);
- */
-
-
-
-/*
-try {
-            slackSyncService.sendMessage(slackMessage);
-        } catch (Exception e) {
-            log.error("Slack 동기 알림 전송 실패", e);
-        }
- */
-

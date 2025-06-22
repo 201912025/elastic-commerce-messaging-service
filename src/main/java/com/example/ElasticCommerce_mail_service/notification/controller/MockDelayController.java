@@ -22,11 +22,4 @@ public class MockDelayController {
         Thread.sleep(400);
         return ResponseEntity.ok().build();
     }
-
-    // 통합 지연 700ms
-    @PostMapping("/sendAll")
-    public ResponseEntity<Void> mockSendAll() throws InterruptedException {
-        Thread.sleep(700);
-        return ResponseEntity.ok().build();
-    }
 }
