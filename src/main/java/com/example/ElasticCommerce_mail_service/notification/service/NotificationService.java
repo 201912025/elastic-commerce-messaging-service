@@ -20,10 +20,8 @@ public class NotificationService {
     private String shopFrontendUrl;
 
     public void sendAll(NotificationRequest req) {
-        // 공통 링크
         String orderLink = shopFrontendUrl + "/orders/" + req.targetId();
 
-        // 제목·본문 생성
         String subject, body;
         switch (req.eventType()) {
             case "ORDER_COMPLETED" -> {
