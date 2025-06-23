@@ -13,8 +13,6 @@ public class NotificationService {
 
     private final EmailService emailService;
     private final SlackService slackService;
-    private final SlackSyncService slackSyncService;
-
 
     @Value("${shop.frontend.url}")
     private String shopFrontendUrl;
