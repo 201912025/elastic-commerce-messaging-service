@@ -1,4 +1,4 @@
-# Strikezone 프로젝트 별도 분리 메시지 전송 서비스
+# ElasticCommerce 프로젝트 별도 분리 메시지 전송 서비스
 
 Spring Boot 기반 **ElasticCommerce Mail & Slack Notification Service**의 주요 기능 정리한 README 예시입니다.
 
@@ -41,3 +41,4 @@ Spring Boot 기반 **ElasticCommerce Mail & Slack Notification Service**의 주�
 |언어·플랫폼|Java 17, Spring Boot
 |리액티브|Sping WebFlux|
 |이메일|Spring JavaMailSender|
+
